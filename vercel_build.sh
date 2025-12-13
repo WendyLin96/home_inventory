@@ -1,10 +1,7 @@
-#!/usr/bin/env bash
-set -e
-
-# Flutter 已經安裝好或透過 caching
+# 如果 flutter 目錄不存在才下載
+if [ ! -d "flutter" ]; then
+  git clone https://github.com/flutter/flutter.git -b stable --depth 1
+fi
+export PATH="$PATH:`pwd`/flutter/bin"
 flutter pub get
-
-# build web 並帶入 Vercel 環境變數
-flutter build web \
-  --dart-define=SUPABASE_URL=$SUPABASE_URL \
-  --dart-define=SUPABASE_KEY=$SUPABASE_KEY
+flutter build web --dart-define=SUPABASE_URL=$SUPABASE_URL --dart-define=SUPABASE_KEY=$SUPABASE_KEY
