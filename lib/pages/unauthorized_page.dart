@@ -7,7 +7,17 @@ class UnauthorizedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('未授權')),
-      body: const Center(child: Text('你沒有權限存取這個頁面')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text(
+              '你沒有權限訪問此頁面',
+              style: TextStyle(fontSize: 18, color: Colors.red),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -7,9 +7,25 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Supabase.instance.client.auth.currentUser;
+
     return Scaffold(
-      appBar: AppBar(title: const Text('受保護頁面')),
-      body: Center(child: Text('歡迎 ${user?.email ?? '使用者'}')),
+      appBar: AppBar(title: const Text('首頁')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('歡迎 ${user?.email ?? '使用者'}'),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                await Supabase.instance.client.auth.signOut();
+                Navigator.pushReplacementNamed(context, '/login');
+              },
+              child: const Text('登出'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

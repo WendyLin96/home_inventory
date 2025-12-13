@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
+  // Google OAuth 登入
   void _loginWithGoogle(BuildContext context) async {
     try {
       await Supabase.instance.client.auth.signInWithOAuth(
@@ -14,24 +15,6 @@ class LoginPage extends StatelessWidget {
     } catch (e, st) {
       print('OAuth Error: $e');
       print('StackTrace: $st');
-    }
-
-    final user = Supabase.instance.client.auth.currentUser;
-    if (user != null) {
-      print('user: $user');
-      print('userid: $user.id');
-      // 檢查 profiles 表中的 allowed 欄位
-      final response = await Supabase.instance.client
-          .from('profiles')
-          .select()
-          .eq('id', user.id)
-          .single();
-
-      if (response != null && response['allowed'] == true) {
-        Navigator.pushReplacementNamed(context, '/home');
-      } else {
-        Navigator.pushReplacementNamed(context, '/unauthorized');
-      }
     }
   }
 
