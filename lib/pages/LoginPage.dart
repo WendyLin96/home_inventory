@@ -5,10 +5,16 @@ class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   void _loginWithGoogle() async {
-    await Supabase.instance.client.auth.signInWithOAuth(
-      OAuthProvider.google,
-      redirectTo: 'https://home-inventory-eight.vercel.app', // 這裡用你的 Vercel 網址
-    );
+    try {
+      await Supabase.instance.client.auth.signInWithOAuth(
+        OAuthProvider.google,
+        redirectTo:
+            'https://home-inventory-eight.vercel.app', // 這裡用你的 Vercel 網址
+      );
+    } catch (e, st) {
+      print('OAuth Error: $e');
+      print('StackTrace: $st');
+    }
   }
 
   @override

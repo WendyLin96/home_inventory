@@ -7,7 +7,7 @@ void main() async {
   const supabaseKey = String.fromEnvironment('SUPABASE_KEY');
 
   // debug 用
-  print('supabaseUrl: , $supabaseUrl');
+  print('supabaseUrl: $supabaseUrl');
 
   runApp(const MyApp());
 }
