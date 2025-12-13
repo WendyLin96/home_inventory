@@ -18,6 +18,8 @@ class LoginPage extends StatelessWidget {
 
     final user = Supabase.instance.client.auth.currentUser;
     if (user != null) {
+      print('user: $user');
+      print('userid: $user.id');
       // 檢查 profiles 表中的 allowed 欄位
       final response = await Supabase.instance.client
           .from('profiles')
