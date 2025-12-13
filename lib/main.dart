@@ -15,6 +15,12 @@ void main() async {
   // 取得目前登入使用者（如果有）
   final user = Supabase.instance.client.auth.currentUser;
 
+  if (user != null) {
+    await Supabase.instance.client
+        .from('profiles')
+        .update({'last_login': DateTime.now().toIso8601String()})
+        .eq('id', user.id);
+  }
   // debug 用
   print('supabaseUrl: $supabaseUrl');
   // 啟動 App，根據使用者是否登入決定初始頁面
