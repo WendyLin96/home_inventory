@@ -3,13 +3,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import './pages/LoginPage.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  await Supabase.initialize(
-    url: 'https://xxxx.supabase.co', // 你的 Supabase URL
-    anonKey: 'YOUR_ANON_KEY', // 你的 anon key
-  );
-
   runApp(const MyApp());
 }
 
