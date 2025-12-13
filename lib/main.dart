@@ -3,8 +3,12 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import './pages/LoginPage.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   const supabaseUrl = String.fromEnvironment('SUPABASE_URL');
   const supabaseKey = String.fromEnvironment('SUPABASE_KEY');
+
+  await Supabase.initialize(url: supabaseUrl, anonKey: supabaseKey);
 
   // debug 用
   print('supabaseUrl: $supabaseUrl');
