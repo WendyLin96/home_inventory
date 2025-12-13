@@ -7,7 +7,8 @@ class LoginPage extends StatelessWidget {
   void _loginWithGoogle() async {
     await Supabase.instance.client.auth.signInWithOAuth(
       OAuthProvider.google,
-      redirectTo: 'https://home-inventory-eight.vercel.app', // 或本地測試 URL
+      redirectTo:
+          'https://tyzoyeplrkfgokezlaqy.supabase.co/auth/v1/callback', // 或本地測試 URL
     );
   }
 
